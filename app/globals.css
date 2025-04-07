@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-size-base: 16px;
+  --color-primary: #1e40af;
+  --color-secondary: #6b7280;
+  --color-title: #111827;
+  --button-radius: 6px;
+}
+
+.dark {
+  --color-title: #ffffff;
+  --color-secondary: #d1d5db;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 75.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    font-size: var(--font-size-base);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-title);
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: #ffffff;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    border-radius: var(--button-radius);
+  }
+
+  .btn-secondary {
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    border-radius: var(--button-radius);
+  }
+}
+
+/* Garantir que os títulos principais das páginas sejam brancos no tema escuro */
+.dark .text-3xl.font-bold.tracking-tight {
+  color: #ffffff;
+}
+
+/* Garantir que os títulos de cards também sejam brancos no tema escuro */
+.dark .card-title {
+  color: #ffffff;
+}
+
+/* Adicionar regras específicas para melhorar a legibilidade no tema escuro */
+/* Adicionar estas regras ao final do arquivo */
+
+/* Melhorar legibilidade de textos em fundos coloridos no tema escuro */
+.dark .bg-blue-50.text-blue-700 {
+  background-color: hsl(220, 70%, 10%);
+  color: hsl(220, 90%, 80%);
+}
+
+.dark .bg-amber-50.text-amber-700 {
+  background-color: hsl(40, 70%, 10%);
+  color: hsl(40, 90%, 80%);
+}
+
+.dark .bg-purple-50.text-purple-700 {
+  background-color: hsl(270, 70%, 10%);
+  color: hsl(270, 90%, 80%);
+}
+
+.dark .bg-green-50.text-green-700 {
+  background-color: hsl(140, 70%, 10%);
+  color: hsl(140, 90%, 80%);
+}
+
+.dark .bg-rose-50.text-rose-700 {
+  background-color: hsl(350, 70%, 10%);
+  color: hsl(350, 90%, 80%);
+}
+
+/* Garantir que os textos em áreas de detalhes sejam legíveis no tema escuro */
+.dark .bg-gray-50 {
+  background-color: hsl(220, 20%, 20%);
+  color: hsl(220, 10%, 90%);
+}
+
+.dark .bg-slate-50 {
+  background-color: hsl(215, 20%, 20%);
+  color: hsl(215, 10%, 90%);
+}
+
+/* Garantir que os textos em badges sejam legíveis no tema escuro */
+.dark .badge {
+  color: hsl(0, 0%, 90%);
+}
+
+/* Garantir que os textos em áreas de detalhes sejam legíveis no tema escuro */
+.dark .text-sm {
+  color: hsl(0, 0%, 90%);
+}
+
+.dark .font-medium {
+  color: hsl(0, 0%, 100%);
+}
+
+/* Adicionar estas regras ao final do arquivo para melhorar a visibilidade da tabela no tema escuro */
+
+/* Melhorar a visibilidade da tabela no tema escuro */
+.dark .table {
+  --tw-border-opacity: 0.2;
+}
+
+.dark thead tr {
+  background-color: hsl(215, 25%, 27%);
+  border-bottom-color: hsl(215, 25%, 32%);
+}
+
+.dark tbody tr {
+  border-bottom-color: hsl(215, 20%, 20%);
+}
+
+.dark tbody tr:hover {
+  background-color: hsl(215, 25%, 18%);
+}
+
+.dark th {
+  color: hsl(210, 40%, 98%);
+}
+
+.dark td {
+  color: hsl(210, 30%, 90%);
+}
+
+/* Melhorar a visibilidade dos status no tema escuro */
+.dark .bg-green-100.text-green-800 {
+  background-color: hsl(142, 30%, 20%);
+  color: hsl(142, 70%, 70%);
+}
+
+.dark .bg-yellow-100.text-yellow-800 {
+  background-color: hsl(45, 30%, 20%);
+  color: hsl(45, 70%, 70%);
+}
+
+.dark .bg-red-100.text-red-800 {
+  background-color: hsl(0, 30%, 20%);
+  color: hsl(0, 70%, 70%);
+}
+
+/* Melhorar a visibilidade dos botões de ação no tema escuro */
+.dark button[variant="ghost"] {
+  color: hsl(210, 30%, 90%);
+}
+
+.dark button[variant="ghost"]:hover {
+  background-color: hsl(215, 25%, 27%);
+}
+
