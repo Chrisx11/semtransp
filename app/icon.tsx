@@ -13,29 +13,30 @@ export const contentType = "image/png"
 // Image generation
 export default function Icon() {
   return new ImageResponse(
-    // ImageResponse JSX element
-    <div
-      style={{
-        fontSize: 24,
-        background: "#2563eb",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "white",
-        borderRadius: "50%",
-        fontWeight: "bold",
-      }}
-    >
-      ST
-    </div>,
-    // ImageResponse options
+    (
+      <div
+        style={{
+          fontSize: 24,
+          background: "#2563eb",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+          borderRadius: "50%",
+          fontWeight: "bold",
+        }}
+      >
+        ST
+      </div>
+    ),
     {
-      // For convenience, we can re-use the exported size metadata
-      // config to also set the ImageResponse's width and height.
       ...size,
-    },
+      // Adicionando configurações adicionais para evitar o uso de resvg.wasm
+      fonts: [],
+      debug: false,
+    }
   )
 }
 
