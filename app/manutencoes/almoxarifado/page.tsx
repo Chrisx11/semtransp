@@ -36,6 +36,10 @@ import { Toaster } from "@/components/ui/toaster"
 import { format } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Check, ChevronsUpDown } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface OrdemServico {
   id: number
@@ -1128,28 +1132,60 @@ export default function AlmoxarifadoPage() {
                     <Label htmlFor="produto" className="mb-2 block">
                       Produto
                     </Label>
-                    <Select
-                      value={produtoSelecionado?.toString() || ""}
-                      onValueChange={(value) => setProdutoSelecionado(Number(value))}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Selecione um produto" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {loadingProdutos ? (
-                          <div className="flex items-center justify-center p-2">
-                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
-                            <span className="ml-2">Carregando...</span>
-                          </div>
-                        ) : (
-                          produtosFiltrados.map((produto) => (
-                            <SelectItem key={produto.id} value={produto.id.toString()}>
-                              {produto.nome} ({produto.quantidade} {produto.unidade})
-                            </SelectItem>
-                          ))
-                        )}
-                      </SelectContent>
-                    </Select>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          role="combobox"
+                          className="w-full justify-between"
+                          disabled={loadingProdutos}
+                        >
+                          {loadingProdutos ? (
+                            <span className="flex items-center">
+                              <div className="h-4 w-4 mr-2 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
+                              Carregando produtos...
+                            </span>
+                          ) : produtoSelecionado ? (
+                            produtos.find((produto) => produto.id === produtoSelecionado)?.nome
+                          ) : (
+                            "Selecione um produto"
+                          )}
+                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                        <Command>
+                          <CommandInput placeholder="Buscar produto..." />
+                          <CommandEmpty>Nenhum produto encontrado.</CommandEmpty>
+                          <CommandGroup>
+                            <CommandList>
+                              {produtos.map((produto) => (
+                                <CommandItem
+                                  key={produto.id}
+                                  value={produto.nome}
+                                  onSelect={() => {
+                                    setProdutoSelecionado(produto.id)
+                                  }}
+                                >
+                                  <Check
+                                    className={cn(
+                                      "mr-2 h-4 w-4",
+                                      produtoSelecionado === produto.id ? "opacity-100" : "opacity-0"
+                                    )}
+                                  />
+                                  <div className="flex flex-col">
+                                    <span>{produto.nome}</span>
+                                    <span className="text-xs text-muted-foreground">
+                                      {produto.categoria} - Estoque: {produto.quantidade} {produto.unidade}
+                                    </span>
+                                  </div>
+                                </CommandItem>
+                              ))}
+                            </CommandList>
+                          </CommandGroup>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
                   </div>
 
                   <div>
